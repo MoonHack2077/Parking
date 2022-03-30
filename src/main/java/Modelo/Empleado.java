@@ -12,7 +12,15 @@ public class Empleado {
     private String nombre;
     private int documento;
     private String tipo;
+    private boolean puedeRegistrar;
 
+    public Empleado(String nombre , int documento, String tipo , boolean puedeRegistrar){
+        this.nombre = nombre;
+        this.documento = documento;
+        this.tipo = tipo;
+        this.puedeRegistrar = puedeRegistrar;
+    }
+    
     /**
      * @return the nombre
      */
@@ -53,5 +61,19 @@ public class Empleado {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the puedeRegistrar
+     */
+    public boolean getPuedeRegistrar() {
+        return puedeRegistrar;
+    }
+
+    /**
+     * @param puedeRegistrar the puedeRegistrar to set
+     */
+    public void setPuedeRegistrar(boolean puedeRegistrar) {
+        this.puedeRegistrar = puedeRegistrar;
     }
 }

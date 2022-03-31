@@ -4,7 +4,6 @@
  */
 package Vista;
 
-import Controlador.ControladorParqueadero;
 import Modelo.Empleado;
 import javax.swing.JOptionPane;
 

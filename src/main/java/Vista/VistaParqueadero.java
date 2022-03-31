@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ControladorEmpleado;
 import Controlador.ControladorParqueadero;
 import Vista.GestionarMotos.GestionarMotos;
 
@@ -15,6 +16,9 @@ public class VistaParqueadero extends javax.swing.JFrame {
     
     //cp la usé como abreviación de controlador parqueadero
     public static ControladorParqueadero cp = new ControladorParqueadero();
+    
+    //cp la usé como abreviación de controlador empleado
+    public static ControladorEmpleado ce = new ControladorEmpleado();
     
     /**
      * Creates new form VistaParqueadero

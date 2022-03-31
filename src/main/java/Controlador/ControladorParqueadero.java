@@ -117,4 +117,14 @@ public class ControladorParqueadero {
         
         return false;
     }
+    
+    public boolean hayAlguno(){
+        for( int i=0 ; i<empleados.length ;i++ ){
+            if( empleados[i] != null && empleados[i].getPuedeRegistrar() ){
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

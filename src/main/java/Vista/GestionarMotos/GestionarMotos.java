@@ -4,7 +4,7 @@
  */
 package Vista.GestionarMotos;
 
-import Controlador.ControladorParqueadero;
+import Modelo.Empleado;
 import Vista.VistaParqueadero;
 import javax.swing.JOptionPane;
 
@@ -22,6 +22,12 @@ public class GestionarMotos extends javax.swing.JFrame {
     public GestionarMotos() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        if( !VistaParqueadero.cp.hayAlguno() ){
+            btnEntrada.setEnabled(false);
+            btnSalida.setEnabled(false);
+            lblHayAlguno.setText("**Aún no hay algún empleado que pueda realizar este proceso");
+        }
     }
 
     /**
@@ -37,7 +43,8 @@ public class GestionarMotos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnEntrada = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSalida = new javax.swing.JButton();
+        lblHayAlguno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +66,14 @@ public class GestionarMotos extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("REGISTRAR SALIDA DE MOTO");
+        btnSalida.setText("REGISTRAR SALIDA DE MOTO");
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
+            }
+        });
+
+        lblHayAlguno.setForeground(new java.awt.Color(230, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,12 +83,17 @@ public class GestionarMotos extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(btnEntrada)
                 .addGap(121, 121, 121)
-                .addComponent(jButton3)
+                .addComponent(btnSalida)
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(198, 198, 198))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(198, 198, 198))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblHayAlguno, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,8 +103,10 @@ public class GestionarMotos extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrada)
-                    .addComponent(jButton3))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(btnSalida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(lblHayAlguno)
+                .addGap(74, 74, 74))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,7 +130,7 @@ public class GestionarMotos extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,10 +142,38 @@ public class GestionarMotos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private boolean validarDocumento(){
+        int documento = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu número de documento para verificar si tienes derecho a realizar este proceso", null));
+        Empleado empleado = VistaParqueadero.cp.buscarEmpleado(documento);
+        if(empleado != null){
+           JOptionPane.showMessageDialog(null, "Acceso concedido " + empleado.getNombre());
+           return true;
+        }else{
+           JOptionPane.showMessageDialog(null, "El documento introducido no corresponde al de un empleado que pueda realizar este proceso");
+        }
+        return false;
+    }
+    
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-       int xd = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu número de documento", null));
-       
+        boolean validacion = validarDocumento();
+        
+        if(validacion){
+            RegistrarEntrada registrarEntrada = new RegistrarEntrada();
+            registrarEntrada.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_btnEntradaActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+         boolean validacion = validarDocumento();
+        
+        if(validacion){
+            RegistrarSalida registrarSalida = new RegistrarSalida();
+            registrarSalida.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnSalidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +213,10 @@ public class GestionarMotos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrada;
+    private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblHayAlguno;
     // End of variables declaration//GEN-END:variables
 }

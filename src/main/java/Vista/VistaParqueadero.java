@@ -13,6 +13,7 @@ import Vista.GestionarMotos.GestionarMotos;
  */
 public class VistaParqueadero extends javax.swing.JFrame {
     
+    //cp la usé como abreviación de controlador parqueadero
     public static ControladorParqueadero cp = new ControladorParqueadero();
     
     /**

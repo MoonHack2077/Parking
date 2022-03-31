@@ -11,13 +11,13 @@ package Modelo;
 public class Empleado {
     private String nombre;
     private int documento;
-    private String tipo;
+    private String cargo;
     private boolean puedeRegistrar;
 
-    public Empleado(String nombre , int documento, String tipo , boolean puedeRegistrar){
+    public Empleado(String nombre , int documento, String cargo , boolean puedeRegistrar){
         this.nombre = nombre;
         this.documento = documento;
-        this.tipo = tipo;
+        this.cargo = cargo;
         this.puedeRegistrar = puedeRegistrar;
     }
     
@@ -52,15 +52,15 @@ public class Empleado {
     /**
      * @return the tipo
      */
-    public String getTipo() {
-        return tipo;
+    public String getCargo() {
+        return cargo;
     }
 
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     /**

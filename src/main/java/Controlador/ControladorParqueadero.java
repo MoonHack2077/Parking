@@ -12,11 +12,10 @@ import Modelo.Moto;
  * @author USER
  */
 public class ControladorParqueadero {
-    Moto[] motos;
+    public Moto[] motos;
     private Empleado[] empleados;
     
     public ControladorParqueadero(){
-        motos = new Moto[15];
         empleados = new Empleado[4];
     }
     
@@ -42,7 +41,7 @@ public class ControladorParqueadero {
      */
     public Empleado buscarEmpleado(int documento){
         for(int i=0 ; i<empleados.length ; i++){
-            if(empleados[i].getDocumento() == documento){
+            if(empleados[i]!= null && empleados[i].getDocumento() == documento){
                 return empleados[i];
             }
         }
@@ -98,15 +97,19 @@ public class ControladorParqueadero {
      * @param nuevoPuedeRegistrar
      * @return true si se pudo editar, de lo contrario false
      */
-    public boolean editarEmpleado(int documento , String nuevoNombre , String nuevoTipo , boolean nuevoPuedeRegistrar){
-        Empleado aux = buscarEmpleado(documento);
+    public boolean editarEmpleado(Empleado empleado){
+        Empleado aux = buscarEmpleado(empleado.getDocumento());
         
         if( aux != null ){
             for(int i=0 ; i<empleados.length ; i++){
-                if(empleados[i].getDocumento() == documento){
-                    empleados[i].setNombre(nuevoNombre);
-                    empleados[i].setTipo(nuevoTipo);
-                    empleados[i].setPuedeRegistrar(nuevoPuedeRegistrar);
+                if(empleados[i].getDocumento() == empleado.getDocumento()){
+                    empleados[i].setNombre(empleado.getNombre());
+                    empleados[i].setCargo(empleado.getCargo());
+                    if( empleado.getCargo().equals("Responsable de patio") ){
+                        empleados[i].setPuedeRegistrar(true);
+                    }else{
+                        empleados[i].setPuedeRegistrar(false);
+                    }
                     return true;
                 }
             }

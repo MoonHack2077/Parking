@@ -4,7 +4,6 @@
  */
 package Controlador;
 
-import Modelo.Empleado;
 import Modelo.Moto;
 
 /**
@@ -15,7 +14,7 @@ public class ControladorEmpleado {
     
     ControladorParqueadero cp = new ControladorParqueadero();
     public ControladorEmpleado(){
-        
+       cp.motos = new Moto[15];
     }
     
     /**
@@ -28,15 +27,13 @@ public class ControladorEmpleado {
         Moto auxMo = cp.buscarMoto(moto.getPlaca());
         
         if( auxMo == null ){
-            if( moto.getEmpleadoResponsable().getTipo().equals("Responsable de patio")){
-
+            if( moto.getEmpleadoResponsable().getPuedeRegistrar()){
                     for( int i=0; i<cp.motos.length ;i++ ){
                         if( cp.motos[i] == null ){
                             cp.motos[i] = moto;
                             return true;
                         }
                     }
-
             }
         
         }
@@ -53,7 +50,7 @@ public class ControladorEmpleado {
          Moto auxMo = cp.buscarMoto(moto.getPlaca());
         
         if( auxMo != null ){
-            if( moto.getEmpleadoResponsable().getTipo().equals("Responsable de patio")){
+            if( moto.getEmpleadoResponsable().getPuedeRegistrar()){
 
                     for( int i=0; i<cp.motos.length ;i++ ){
                         if( cp.motos[i].getPlaca().equals(moto.getPlaca())){
@@ -63,8 +60,9 @@ public class ControladorEmpleado {
                     }
 
             }
-        
+            //Maybe add joptionpane to advise that he can´t add a moto
         }
+        
         return false;
     }
     

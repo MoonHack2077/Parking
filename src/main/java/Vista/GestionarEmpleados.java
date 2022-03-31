@@ -13,19 +13,16 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class GestionarEmpleados extends javax.swing.JFrame {
-
-    private ControladorParqueadero cp;
     
     /**
      * Creates new form GestionarMOtos
      */
     public GestionarEmpleados() {
         initComponents();
-        btnEditar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        cp = new ControladorParqueadero();
+        this.setLocationRelativeTo(null);
+        setEnabledInputs(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,7 +219,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
             empleado = new Empleado(nombre,documento,cargo, false);
         }
         
-        boolean añadido = cp.añadirEmpleado(empleado);
+        boolean añadido = VistaParqueadero.cp.añadirEmpleado(empleado);
         
         if(añadido){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " añadido");
@@ -239,7 +236,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        int documento = Integer.parseInt(txtDocumento.getText());
         
-        Empleado encontrado = cp.buscarEmpleado(documento);
+        Empleado encontrado = VistaParqueadero.cp.buscarEmpleado(documento);
         
         if(encontrado != null){
             txtNombre.setText(encontrado.getNombre());
@@ -256,7 +253,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
      */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int documento = Integer.parseInt(txtDocumento.getText());
-        boolean eliminado = cp.eliminarEmpleado(documento);
+        boolean eliminado = VistaParqueadero.cp.eliminarEmpleado(documento);
         
         if(eliminado){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " eliminado");
@@ -282,7 +279,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
             empleado = new Empleado(nombre,documento,cargo, false);
         }
         
-        boolean editado = cp.editarEmpleado(empleado);
+        boolean editado = VistaParqueadero.cp.editarEmpleado(empleado);
         
         if(editado){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " editado");

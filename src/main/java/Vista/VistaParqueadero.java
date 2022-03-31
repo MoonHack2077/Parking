@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ControladorParqueadero;
 import Vista.GestionarMotos.GestionarMotos;
 
 /**
@@ -11,14 +12,17 @@ import Vista.GestionarMotos.GestionarMotos;
  * @author USER
  */
 public class VistaParqueadero extends javax.swing.JFrame {
-
+    
+    public static ControladorParqueadero cp = new ControladorParqueadero();
+    
     /**
      * Creates new form VistaParqueadero
      */
     public VistaParqueadero() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -17,6 +17,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
      */
     public RegistrarSalida() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

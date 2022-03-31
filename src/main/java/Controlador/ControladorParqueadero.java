@@ -13,7 +13,7 @@ import Modelo.Moto;
  */
 public class ControladorParqueadero {
     public Moto[] motos;
-    private Empleado[] empleados;
+    public Empleado[] empleados;
     
     public ControladorParqueadero(){
         empleados = new Empleado[4];

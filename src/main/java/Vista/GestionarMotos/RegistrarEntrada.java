@@ -17,6 +17,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
      */
     public RegistrarEntrada() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

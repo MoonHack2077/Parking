@@ -21,6 +21,7 @@ public class GestionarMotos extends javax.swing.JFrame {
      */
     public GestionarMotos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

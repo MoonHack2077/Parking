@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.Calendar;
+
 /**
  *
  * @author USER
@@ -11,11 +13,11 @@ package Modelo;
 public class Moto {
     private String placa;
     private boolean casco;
-    private String fechaLLegada;
+    private Calendar fechaLLegada;
     private int horaLLegada;
     private Empleado empleadoResponsable;
     
-    public Moto( String placa , boolean casco , String fechaLLegada , int horaLLegada , Empleado empleadoResponsable){
+    public Moto( String placa , boolean casco , Calendar fechaLLegada , int horaLLegada , Empleado empleadoResponsable){
         this.placa = placa;
         this.casco = casco;
         this.fechaLLegada = fechaLLegada;
@@ -54,14 +56,14 @@ public class Moto {
     /**
      * @return the fechaLLegada
      */
-    public String getFechaLLegada() {
+    public Calendar getFechaLLegada() {
         return fechaLLegada;
     }
 
     /**
      * @param fechaLLegada the fechaLLegada to set
      */
-    public void setFechaLLegada(String fechaLLegada) {
+    public void setFechaLLegada(Calendar fechaLLegada) {
         this.fechaLLegada = fechaLLegada;
     }
 

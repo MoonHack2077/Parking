@@ -142,9 +142,14 @@ public class GestionarMotos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private boolean validarDocumento(){
+    Empleado obtenerEmpleado(){
         int documento = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu número de documento para verificar si tienes derecho a realizar este proceso", null));
         Empleado empleado = VistaParqueadero.cp.buscarEmpleado(documento);
+        return empleado;
+    }
+    
+    private boolean validarDocumento(Empleado empleado){
+        
         if(empleado != null){
            JOptionPane.showMessageDialog(null, "Acceso concedido " + empleado.getNombre());
            return true;
@@ -155,10 +160,11 @@ public class GestionarMotos extends javax.swing.JFrame {
     }
     
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        boolean validacion = validarDocumento();
+        Empleado obtenerEmpleado = obtenerEmpleado();
+        boolean validacion = validarDocumento(obtenerEmpleado);
         
         if(validacion){
-            RegistrarEntrada registrarEntrada = new RegistrarEntrada();
+            RegistrarEntrada registrarEntrada = new RegistrarEntrada(obtenerEmpleado);
             registrarEntrada.setVisible(true);
             this.dispose();
         }
@@ -166,7 +172,8 @@ public class GestionarMotos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntradaActionPerformed
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
-         boolean validacion = validarDocumento();
+        Empleado obtenerEmpleado = obtenerEmpleado();
+        boolean validacion = validarDocumento(obtenerEmpleado);
         
         if(validacion){
             RegistrarSalida registrarSalida = new RegistrarSalida();

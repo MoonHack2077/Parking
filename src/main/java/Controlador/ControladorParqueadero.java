@@ -36,6 +36,11 @@ public class ControladorParqueadero {
         return null;
     }
     
+    /**
+     * Metodo para obtener las horas que permaneció una moto
+     * @param moto
+     * @return 
+     */
     public long horasPermanecidas(Moto moto){
         
         long horaLLegada = moto.getFechaLLegada().getTimeInMillis();
@@ -45,6 +50,16 @@ public class ControladorParqueadero {
         long horasTotales = TimeUnit.MILLISECONDS.toHours(diferenciaHoras);
         
         return horasTotales;
+    }
+    
+    public Moto obtenerMotoSalida(String placa){
+        Moto moto = motos[0];
+        for(int i=0 ; i<motos.length ; i++){
+            if( motos[i] != null && motos[i].getPlaca().equals(placa)){
+                moto = motos[i];
+            }
+        }
+        return moto;
     }
     
     /**

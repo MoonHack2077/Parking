@@ -4,9 +4,11 @@
  */
 package Vista.GestionarMotos;
 
+import Modelo.Empleado;
 import Modelo.Moto;
 import Vista.VistaParqueadero;
 import java.util.Calendar;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarSalida extends javax.swing.JFrame {
 
+    Empleado empleado;
+    String[] placas;
+    JComboBox placasBox;
     /**
      * Creates new form RegistrarSalida
      */
@@ -22,7 +27,19 @@ public class RegistrarSalida extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    public RegistrarSalida(Empleado empleado) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.empleado = empleado;
+        placas = VistaParqueadero.cp.obtenerPlacas();
+        String[] xd = {"xd", "xd"};
+        this.placasBox = new JComboBox(xd);
+        this.placasBox.setBounds(250, 40, 100, 30);
+        PANEL.add(this.placasBox);
+        for(int i=0 ; i<placas.length; i++){
+            System.out.println(placas[i]);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,10 +50,8 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private void initComponents() {
 
         btnVolver = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        PANEL = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPlaca = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         cbxDiaSalida = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -58,11 +73,9 @@ public class RegistrarSalida extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        PANEL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         jLabel1.setText("Ingrese la placa de la moto:");
-
-        jButton1.setText("Buscar Moto");
 
         jLabel3.setText("Dia");
 
@@ -89,67 +102,58 @@ public class RegistrarSalida extends javax.swing.JFrame {
 
         jLabel6.setText("Sistema para registrar salida de motos");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PANELLayout = new javax.swing.GroupLayout(PANEL);
+        PANEL.setLayout(PANELLayout);
+        PANELLayout.setHorizontalGroup(
+            PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANELLayout.createSequentialGroup()
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANELLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cbxMesSalida, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxHoraSalida, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxDiaSalida, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtAnioSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(cbxFase, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PANELLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistrarSalida)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addComponent(jButton1))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
+                            .addComponent(jLabel1))
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel6)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PANELLayout.setVerticalGroup(
+            PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANELLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel1)
+                .addGap(42, 42, 42)
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbxHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbxDiaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cbxMesSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAnioSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(42, 42, 42)
@@ -167,7 +171,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
@@ -176,22 +180,30 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addComponent(PANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        VistaParqueadero ventanaParqueadero = new VistaParqueadero();
-        ventanaParqueadero.setVisible(true);
+        GestionarMotos ventanaMotos = new GestionarMotos();
+        ventanaMotos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegistrarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaActionPerformed
-        String placa = txtPlaca.getText();
+        String placa = placasBox.getSelectedItem().toString();
         int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
+        String fase = cbxFase.getSelectedItem().toString();
+        
+        if( fase.equals("PM") && horaSalida == 12 ){
+            horaSalida=0;
+        }else if( fase.equals("PM") ){
+            horaSalida+=12;
+        }
+        
         int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
         int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
         int anioSalida = Integer.parseInt(txtAnioSalida.getText());
@@ -200,7 +212,8 @@ public class RegistrarSalida extends javax.swing.JFrame {
         fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
 
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
-
+        moto.setFechaSalida(fechaSalida);
+        moto.setEmpleadoSalida(empleado);
         boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(moto);
 
         if(registrada){
@@ -246,21 +259,19 @@ public class RegistrarSalida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PANEL;
     private javax.swing.JButton btnRegistrarSalida;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cbxDiaSalida;
     private javax.swing.JComboBox<String> cbxFase;
     private javax.swing.JComboBox<String> cbxHoraSalida;
     private javax.swing.JComboBox<String> cbxMesSalida;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtAnioSalida;
-    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

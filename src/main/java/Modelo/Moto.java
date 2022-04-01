@@ -17,6 +17,7 @@ public class Moto {
     private Calendar fechaSalida;
     //private int horaLLegada;
     private Empleado empleadoResponsable;
+    private Empleado empleadoSalida;
     
     public Moto( String placa , boolean casco , Calendar fechaLLegada , Empleado empleadoResponsable){
         this.placa = placa;
@@ -74,7 +75,7 @@ public class Moto {
     public int getHoraLLegada() {
         return horaLLegada;
     }
-*/
+
     /**
      * @param horaLLegada the horaLLegada to set
      
@@ -108,6 +109,20 @@ public class Moto {
      */
     public void setFechaSalida(Calendar fechaSalida) {
         this.fechaSalida = fechaSalida;
+    }
+
+    /**
+     * @return the empleadoSalida
+     */
+    public Empleado getEmpleadoSalida() {
+        return empleadoSalida;
+    }
+
+    /**
+     * @param empleadoSalida the empleadoSalida to set
+     */
+    public void setEmpleadoSalida(Empleado empleadoSalida) {
+        this.empleadoSalida = empleadoSalida;
     }
     
     

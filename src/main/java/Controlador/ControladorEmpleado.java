@@ -46,7 +46,7 @@ public class ControladorEmpleado {
         
         if( auxMo != null ){
             for( int i=0; i<cp.motos.length ;i++ ){
-                if( cp.motos[i]!=null && cp.motos[i].getPlaca().equals(moto.getPlaca())){
+                if( cp.motos[i]!= null && cp.motos[i].getPlaca().equals(moto.getPlaca())){
                     cp.motos[i] = null;
                      return true;
                 }

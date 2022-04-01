@@ -23,7 +23,7 @@ public class GestionarMotos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        if( !VistaParqueadero.cp.hayAlguno() ){
+        if( !VistaParqueadero.cp.hayAlgunEmpleado() ){
             btnEntrada.setEnabled(false);
             btnSalida.setEnabled(false);
             lblHayAlguno.setText("**Aún no hay algún empleado que pueda realizar este proceso");
@@ -160,11 +160,11 @@ public class GestionarMotos extends javax.swing.JFrame {
     }
     
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        Empleado obtenerEmpleado = obtenerEmpleado();
-        boolean validacion = validarDocumento(obtenerEmpleado);
+        Empleado empleadoResponsable = obtenerEmpleado();
+        boolean validacion = validarDocumento(empleadoResponsable);
         
         if(validacion){
-            RegistrarEntrada registrarEntrada = new RegistrarEntrada(obtenerEmpleado);
+            RegistrarEntrada registrarEntrada = new RegistrarEntrada(empleadoResponsable);
             registrarEntrada.setVisible(true);
             this.dispose();
         }
@@ -172,11 +172,11 @@ public class GestionarMotos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntradaActionPerformed
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
-        Empleado obtenerEmpleado = obtenerEmpleado();
-        boolean validacion = validarDocumento(obtenerEmpleado);
+        Empleado empleadoResponsable = obtenerEmpleado();
+        boolean validacion = validarDocumento(empleadoResponsable);
         
         if(validacion){
-            RegistrarSalida registrarSalida = new RegistrarSalida();
+            RegistrarSalida registrarSalida = new RegistrarSalida(empleadoResponsable);
             registrarSalida.setVisible(true);
             this.dispose();
         }

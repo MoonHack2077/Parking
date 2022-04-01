@@ -208,6 +208,14 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private void btnRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEntradaActionPerformed
         String placa = txtPlaca.getText();
         int horaEntrada = Integer.parseInt(cbxHoraEntrada.getSelectedItem().toString());
+        String fase = cbxFase.getSelectedItem().toString();
+        
+        if( fase.equals("PM") && horaEntrada == 12 ){
+            horaEntrada=0;
+        }else if( fase.equals("PM") ){
+            horaEntrada+=12;
+        }
+        
         boolean casco = rbtnCasco.getVerifyInputWhenFocusTarget();
         int diaEntrada = Integer.parseInt(cbxDiaEntrada.getSelectedItem().toString());
         int mesEntrada = Integer.parseInt(cbxMesEntrada.getSelectedItem().toString());

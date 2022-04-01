@@ -119,13 +119,33 @@ public class ControladorParqueadero {
         return false;
     }
     
-    public boolean hayAlguno(){
+    public boolean hayAlgunEmpleado(){
         for( int i=0 ; i<empleados.length ;i++ ){
             if( empleados[i] != null && empleados[i].getPuedeRegistrar() ){
                 return true;
             }
-        }
-        
+        }       
         return false;
+    }
+    
+    public String[] obtenerPlacas(){
+        int contadorPlacas = 0;
+        for( int i=0 ; i<motos.length ;i++ ){
+            if( motos[i] != null){
+                contadorPlacas++;
+            }
+        }   
+                
+        String[] placas = new String[contadorPlacas]; 
+        contadorPlacas=0;
+        for( int i=0 ; i<motos.length ;i++ ){
+            if( motos[i] != null){
+                placas[contadorPlacas] = motos[i].getPlaca();
+                System.out.println(placas[contadorPlacas]);
+                contadorPlacas++;
+            }
+        }  
+        
+        return placas;
     }
 }

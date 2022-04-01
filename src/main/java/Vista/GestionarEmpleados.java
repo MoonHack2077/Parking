@@ -55,18 +55,12 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         jLabel3.setText("Cargo: ");
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
         txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDocumentoKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDocumentoKeyTyped(evt);
             }
@@ -308,6 +302,19 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    /**
+     * Metodo para que en el textField para ingresar el nombre solo se digiten letras
+     * @param evt 
+     */
+    private void soloLetras( java.awt.event.KeyEvent evt  ){
+        char caracter = evt.getKeyChar();
+       
+        
+        if( (caracter<'a' || caracter>'z') && (caracter<'A' || caracter>'B')){
+            JOptionPane.showMessageDialog(null, "Solo se admiten letras");
+            evt.consume();
+        }
+    }
     
     /**
      * Metodo para supervisar el contenido que digita el usuario
@@ -318,6 +325,25 @@ public class GestionarEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     /**
+     * Metodo para saber si los textField estan vacios
+     */
+    private void estanVacios(){
+        
+        if( txtNombre.getText().isEmpty() || txtDocumento.getText().isEmpty() ){
+            btnAñadir.setEnabled(false);
+        }else{ 
+            btnAñadir.setEnabled(true); 
+        }
+        
+        if( txtDocumento.getText().isEmpty() ){
+            btnBuscar.setEnabled(false);
+        }else{ 
+            btnBuscar.setEnabled(true); 
+        }
+        
+    }
+    
+    /**
      * Metodo para supervisar el contenido que digita el usuario
      * @param evt 
      */
@@ -325,15 +351,6 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         VistaParqueadero.vg.validarCaracteresEspeciales(evt);
         VistaParqueadero.vg.soloNumeros(evt);
     }//GEN-LAST:event_txtDocumentoKeyTyped
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        VistaParqueadero.vg.estaVacio(txtNombre, btnAñadir);
-        VistaParqueadero.vg.estaVacio(txtDocumento, btnAñadir);
-    }//GEN-LAST:event_txtNombreKeyReleased
-
-    private void txtDocumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyReleased
-        VistaParqueadero.vg.estaVacio(txtDocumento, btnBuscar);
-    }//GEN-LAST:event_txtDocumentoKeyReleased
 
     /**
      * @param args the command line arguments

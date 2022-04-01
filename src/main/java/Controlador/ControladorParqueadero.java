@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Empleado;
 import Modelo.Moto;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -27,12 +28,23 @@ public class ControladorParqueadero {
      */
     public Moto buscarMoto(String placa){
         for(int i=0 ; i<motos.length ; i++){
-            if(motos[i]!=null && motos[i].getPlaca().equals(placa)){
+            if( motos[i] != null && motos[i].getPlaca().equals(placa)){
                 return motos[i];
             }
         }
         
         return null;
+    }
+    
+    public long horasPermanecidas(Moto moto){
+        
+        long horaLLegada = moto.getFechaLLegada().getTimeInMillis();
+        long horaSalida = moto.getFechaSalida().getTimeInMillis();
+        
+        long diferenciaHoras = Math.abs( horaLLegada - horaSalida );
+        long horasTotales = TimeUnit.MILLISECONDS.toHours(diferenciaHoras);
+        
+        return horasTotales;
     }
     
     /**

@@ -17,6 +17,7 @@ public class Moto {
     private Calendar fechaSalida;
     private Empleado empleadoEntrada;
     private Empleado empleadoSalida;
+    private long horasPermanecidas;
     
     public Moto( String placa , boolean casco , Calendar fechaLLegada , Empleado empleadoEntrada){
         this.placa = placa;
@@ -104,6 +105,20 @@ public class Moto {
      */
     public void setEmpleadoSalida(Empleado empleadoSalida) {
         this.empleadoSalida = empleadoSalida;
+    }
+
+    /**
+     * @return the horasPermanecidas
+     */
+    public long getHorasPermanecidas() {
+        return horasPermanecidas;
+    }
+
+    /**
+     * @param horasPermanecidas the horasPermanecidas to set
+     */
+    public void setHorasPermanecidas(long horasPermanecidas) {
+        this.horasPermanecidas = horasPermanecidas;
     }
     
     

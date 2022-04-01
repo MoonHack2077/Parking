@@ -18,6 +18,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
 
     //Atributo para conocer el empleado que realizará la acción
     Empleado empleado;
+    
     /**
      * Creates new form RegistrarSalida
      */
@@ -220,7 +221,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
         String placa = txtPlaca.getText();       
 
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
-
+        System.out.println(moto);
         if(moto != null){
             int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
             String fase = cbxFase.getSelectedItem().toString();
@@ -239,6 +240,8 @@ public class RegistrarSalida extends javax.swing.JFrame {
             fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
             moto.setFechaSalida(fechaSalida);
             moto.setEmpleadoSalida(empleado);
+            long horasPermanecidas = VistaParqueadero.cp.horasPermanecidas(moto);
+            moto.setHorasPermanecidas(horasPermanecidas );
             
             boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(moto.getPlaca());
             

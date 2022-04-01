@@ -41,17 +41,16 @@ public class ControladorEmpleado {
      * @param moto
      * @return 
      */
-    public boolean registrarSalidaMoto(Moto moto){
-         Moto auxMo = cp.buscarMoto(moto.getPlaca());
+    public boolean registrarSalidaMoto(String placa){
+        Moto auxMo = cp.buscarMoto(placa);
         
         if( auxMo != null ){
             for( int i=0; i<cp.motos.length ;i++ ){
-                if( cp.motos[i]!= null && cp.motos[i].getPlaca().equals(moto.getPlaca())){
+                if( cp.motos[i]!= null && cp.motos[i].getPlaca().equals(placa)){
                     cp.motos[i] = null;
-                     return true;
+                    return true;
                 }
             }
-            //Maybe add joptionpane to advise that he can´t add a moto
         }
         
         return false;

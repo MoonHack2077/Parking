@@ -8,7 +8,6 @@ import Modelo.Empleado;
 import Modelo.Moto;
 import Vista.VistaParqueadero;
 import java.util.Calendar;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +17,6 @@ import javax.swing.JOptionPane;
 public class RegistrarSalida extends javax.swing.JFrame {
 
     Empleado empleado;
-    String[] placas;
-    JComboBox placasBox;
     /**
      * Creates new form RegistrarSalida
      */
@@ -31,14 +28,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.empleado = empleado;
-        placas = VistaParqueadero.cp.obtenerPlacas();
-        String[] xd = {"xd", "xd"};
-        this.placasBox = new JComboBox(xd);
-        this.placasBox.setBounds(250, 40, 100, 30);
-        PANEL.add(this.placasBox);
-        for(int i=0 ; i<placas.length; i++){
-            System.out.println(placas[i]);
-        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +52,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
         cbxHoraSalida = new javax.swing.JComboBox<>();
         cbxFase = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        txtPlaca = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,8 +118,14 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistrarSalida)
                             .addComponent(jLabel1))
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6)))
+                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANELLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANELLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(131, 131, 131)))))
                 .addContainerGap(193, Short.MAX_VALUE))
         );
         PANELLayout.setVerticalGroup(
@@ -138,8 +134,10 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbxHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +179,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,8 +191,16 @@ public class RegistrarSalida extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void limpiarInputs(){
+        txtPlaca.setText("");
+        cbxHoraSalida.setSelectedItem("1");
+        cbxDiaSalida.setSelectedItem("1");
+        cbxMesSalida.setSelectedItem("1");
+        txtAnioSalida.setText("");
+    }
+    
     private void btnRegistrarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaActionPerformed
-        String placa = placasBox.getSelectedItem().toString();
+        String placa = txtPlaca.getText();
         int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
         String fase = cbxFase.getSelectedItem().toString();
         
@@ -212,14 +218,15 @@ public class RegistrarSalida extends javax.swing.JFrame {
         fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
 
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
-        moto.setFechaSalida(fechaSalida);
-        moto.setEmpleadoSalida(empleado);
-        boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(moto);
+        boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(placa);
 
         if(registrada){
             JOptionPane.showMessageDialog(null, "Ha salido la moto con la placa " + placa);
+            moto.setFechaSalida(fechaSalida);
+            moto.setEmpleadoSalida(empleado);
+            limpiarInputs();
         }else{
-            JOptionPane.showMessageDialog(null, "No se ha registrado salida de la moto");
+            JOptionPane.showMessageDialog(null, "No se ha registrado la salida de la moto");
         }
     }//GEN-LAST:event_btnRegistrarSalidaActionPerformed
 
@@ -273,5 +280,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtAnioSalida;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

@@ -128,6 +128,16 @@ public class ControladorParqueadero {
         return false;
     }
     
+    /**
+    public boolean hayAlgunaMoto(){
+        for( int i=0 ; i<motos.length ;i++ ){
+            if( motos[i] != null  ){
+                return true;
+            }
+        }       
+        return false;
+    }
+    */
     public String[] obtenerPlacas(){
         int contadorPlacas = 0;
         for( int i=0 ; i<motos.length ;i++ ){
@@ -135,13 +145,12 @@ public class ControladorParqueadero {
                 contadorPlacas++;
             }
         }   
-                
+             
         String[] placas = new String[contadorPlacas]; 
         contadorPlacas=0;
-        for( int i=0 ; i<motos.length ;i++ ){
+        for( int i=0 ; i<motos.length ; i++ ){
             if( motos[i] != null){
                 placas[contadorPlacas] = motos[i].getPlaca();
-                System.out.println(placas[contadorPlacas]);
                 contadorPlacas++;
             }
         }  

@@ -216,7 +216,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             horaEntrada+=12;
         }
         
-        boolean casco = rbtnCasco.getVerifyInputWhenFocusTarget();
+        boolean casco = rbtnCasco.isSelected();
         int diaEntrada = Integer.parseInt(cbxDiaEntrada.getSelectedItem().toString());
         int mesEntrada = Integer.parseInt(cbxMesEntrada.getSelectedItem().toString());
         int anioEntrada = Integer.parseInt(txtAnioEntrada.getText());

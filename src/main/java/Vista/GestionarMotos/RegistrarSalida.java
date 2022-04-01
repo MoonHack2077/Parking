@@ -217,14 +217,17 @@ public class RegistrarSalida extends javax.swing.JFrame {
         Calendar fechaSalida = Calendar.getInstance();
         fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
 
-        Moto moto = VistaParqueadero.cp.buscarMoto(placa);
         boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(placa);
 
         if(registrada){
             JOptionPane.showMessageDialog(null, "Ha salido la moto con la placa " + placa);
+            Moto moto = VistaParqueadero.cp.buscarMoto(placa);
             moto.setFechaSalida(fechaSalida);
             moto.setEmpleadoSalida(empleado);
             limpiarInputs();
+            Factura factura = new Factura(moto);
+            factura.setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "No se ha registrado la salida de la moto");
         }

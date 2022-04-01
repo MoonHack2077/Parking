@@ -16,7 +16,7 @@ public class ControladorEmpleado {
     public ControladorEmpleado(){}
     
     /**
-     * Metodo para registrar una moto en el parqueadero
+     * Metodo para registrar la entrada de una moto en el parqueadero
      * @param moto
      * @param documento
      * @return true si tuvo éxito, de lo contrario false
@@ -37,9 +37,9 @@ public class ControladorEmpleado {
     }
     
     /**
-     * 
+     * Metodo para registrar la salida de una moto del parqueadero
      * @param moto
-     * @return 
+     * @return true si tuvo éxito, de lo contrario false
      */
     public boolean registrarSalidaMoto(String placa){
         Moto auxMo = cp.buscarMoto(placa);

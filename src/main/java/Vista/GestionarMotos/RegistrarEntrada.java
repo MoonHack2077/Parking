@@ -25,6 +25,11 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    /**
+     * Constructor para transferir el empleado que registrará la entrada
+     * @param empleado 
+     */
     public RegistrarEntrada(Empleado empleado) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -189,6 +194,10 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que vuelve a la ventana para gestionar las motos por medio del boton volver
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GestionarMotos ventanaMotos = new GestionarMotos();
         ventanaMotos.setVisible(true);
@@ -196,7 +205,9 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     
-    
+    /**
+     * Metodo para reiniciar los textFields
+     */
     private void limpiarInputs(){
         txtPlaca.setText("");
         cbxHoraEntrada.setSelectedItem("1");
@@ -205,6 +216,10 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         txtAnioEntrada.setText("");
     }
     
+    /**
+     * Metodo que maneja el evento del boton de registrar la entrada
+     * @param evt 
+     */
     private void btnRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEntradaActionPerformed
         String placa = txtPlaca.getText();
         int horaEntrada = Integer.parseInt(cbxHoraEntrada.getSelectedItem().toString());

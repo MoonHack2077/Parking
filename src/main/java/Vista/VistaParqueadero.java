@@ -110,12 +110,20 @@ public class VistaParqueadero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que maneja el evento del boton de gestionar empleados para abrir su respectiva ventana
+     * @param evt 
+     */
     private void btnGestionarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarEmpleadosActionPerformed
         GestionarEmpleados ventanaEmpleados = new GestionarEmpleados();
         ventanaEmpleados.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionarEmpleadosActionPerformed
 
+    /**
+     * Metodo que maneja el evento del boton de gestionar motos para abrir su respectiva ventana
+     * @param evt 
+     */
     private void btnGestionarMotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarMotosActionPerformed
         GestionarMotos ventanaMotos = new GestionarMotos();
         ventanaMotos.setVisible(true);

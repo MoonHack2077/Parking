@@ -93,9 +93,6 @@ public class ControladorParqueadero {
     /**
      * Metodo para editar la información de un empleado
      * @param documento
-     * @param nuevoNombre
-     * @param nuevoTipo
-     * @param nuevoPuedeRegistrar
      * @return true si se pudo editar, de lo contrario false
      */
     public boolean editarEmpleado(Empleado empleado){
@@ -119,6 +116,10 @@ public class ControladorParqueadero {
         return false;
     }
     
+    /**
+     * Metodo para saber si hay un responsable de patio
+     * @return true si hay un empleado que pueda realizar la accion, de lo contrario false 
+     */
     public boolean hayAlgunEmpleado(){
         for( int i=0 ; i<empleados.length ;i++ ){
             if( empleados[i] != null && empleados[i].getPuedeRegistrar() ){
@@ -126,35 +127,5 @@ public class ControladorParqueadero {
             }
         }       
         return false;
-    }
-    
-    /**
-    public boolean hayAlgunaMoto(){
-        for( int i=0 ; i<motos.length ;i++ ){
-            if( motos[i] != null  ){
-                return true;
-            }
-        }       
-        return false;
-    }
-    */
-    public String[] obtenerPlacas(){
-        int contadorPlacas = 0;
-        for( int i=0 ; i<motos.length ;i++ ){
-            if( motos[i] != null){
-                contadorPlacas++;
-            }
-        }   
-             
-        String[] placas = new String[contadorPlacas]; 
-        contadorPlacas=0;
-        for( int i=0 ; i<motos.length ; i++ ){
-            if( motos[i] != null){
-                placas[contadorPlacas] = motos[i].getPlaca();
-                contadorPlacas++;
-            }
-        }  
-        
-        return placas;
     }
 }

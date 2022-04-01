@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class GestionarMotos extends javax.swing.JFrame {
-
-    
-    
+ 
     /**
      * Creates new form GestionarEmpleados
      */
@@ -23,6 +21,7 @@ public class GestionarMotos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        //Si no hay algun empleado que pueda ejecutar esta acción, no se podrán usar los botones y mostrará un aviso
         if( !VistaParqueadero.cp.hayAlgunEmpleado() ){
             btnEntrada.setEnabled(false);
             btnSalida.setEnabled(false);
@@ -136,18 +135,31 @@ public class GestionarMotos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que vuelve a la ventana principal por medio del boton volver
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         VistaParqueadero ventanaParqueadero = new VistaParqueadero();
         ventanaParqueadero.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Metodo para obtener el empleado que realizó el registro
+     * @return 
+     */
     Empleado obtenerEmpleado(){
         int documento = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu número de documento para verificar si tienes derecho a realizar este proceso", null));
         Empleado empleado = VistaParqueadero.cp.buscarEmpleado(documento);
         return empleado;
     }
     
+    /**
+     * Metodo que valida el documento del empleado
+     * @param empleado
+     * @return true si corresponde a un empleado que puede realizar el proceso, de lo contrario false
+     */
     private boolean validarDocumento(Empleado empleado){
         
         if(empleado != null){
@@ -159,6 +171,10 @@ public class GestionarMotos extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Metodo que abre la ventana para registrar la entrada de una moto
+     * @param evt 
+     */
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
         Empleado empleadoResponsable = obtenerEmpleado();
         boolean validacion = validarDocumento(empleadoResponsable);
@@ -171,6 +187,10 @@ public class GestionarMotos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnEntradaActionPerformed
 
+    /**
+     * Metodo que abre la ventana para registrar la salida de una moto
+     * @param evt 
+     */
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
         Empleado empleadoResponsable = obtenerEmpleado();
         boolean validacion = validarDocumento(empleadoResponsable);

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarSalida extends javax.swing.JFrame {
 
+    //Atributo para conocer el empleado que realizará la acción
     Empleado empleado;
     /**
      * Creates new form RegistrarSalida
@@ -24,6 +25,11 @@ public class RegistrarSalida extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    /**
+     * Constructor para transferir el empleado que registrará la salida
+     * @param empleado 
+     */
     public RegistrarSalida(Empleado empleado) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -185,12 +191,19 @@ public class RegistrarSalida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que vuelve a la ventana para gestionar las motos por medio del boton volver
+     * @param evt 
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GestionarMotos ventanaMotos = new GestionarMotos();
         ventanaMotos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Metodo para reiniciar los textFields
+     */
     private void limpiarInputs(){
         txtPlaca.setText("");
         cbxHoraSalida.setSelectedItem("1");
@@ -199,37 +212,47 @@ public class RegistrarSalida extends javax.swing.JFrame {
         txtAnioSalida.setText("");
     }
     
+    /**
+     * Metodo que maneja el evento del boton de registrar la salida
+     * @param evt 
+     */
     private void btnRegistrarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaActionPerformed
-        String placa = txtPlaca.getText();
-        int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
-        String fase = cbxFase.getSelectedItem().toString();
-        
-        if( fase.equals("PM") && horaSalida == 12 ){
-            horaSalida=0;
-        }else if( fase.equals("PM") ){
-            horaSalida+=12;
-        }
-        
-        int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
-        int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
-        int anioSalida = Integer.parseInt(txtAnioSalida.getText());
+        String placa = txtPlaca.getText();       
 
-        Calendar fechaSalida = Calendar.getInstance();
-        fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
+        Moto moto = VistaParqueadero.cp.buscarMoto(placa);
 
-        boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(placa);
+        if(moto != null){
+            int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
+            String fase = cbxFase.getSelectedItem().toString();
 
-        if(registrada){
-            JOptionPane.showMessageDialog(null, "Ha salido la moto con la placa " + placa);
-            Moto moto = VistaParqueadero.cp.buscarMoto(placa);
+            if( fase.equals("PM") && horaSalida == 12 ){
+                horaSalida=0;
+            }else if( fase.equals("PM") ){
+                horaSalida+=12;
+            }
+
+            int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
+            int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
+            int anioSalida = Integer.parseInt(txtAnioSalida.getText());
+
+            Calendar fechaSalida = Calendar.getInstance();
+            fechaSalida.set(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
             moto.setFechaSalida(fechaSalida);
             moto.setEmpleadoSalida(empleado);
-            limpiarInputs();
-            Factura factura = new Factura(moto);
-            factura.setVisible(true);
-            this.dispose();
+            
+            boolean registrada = VistaParqueadero.ce.registrarSalidaMoto(moto.getPlaca());
+            
+            if(registrada){
+                JOptionPane.showMessageDialog(null, "Ha salido la moto con la placa " + placa);
+                limpiarInputs();
+                Factura factura = new Factura(moto);
+                factura.setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "No se registró la salida");
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "No se ha registrado la salida de la moto");
+            JOptionPane.showMessageDialog(null, "La placa no coincide con alguna de las registradas");
         }
     }//GEN-LAST:event_btnRegistrarSalidaActionPerformed
 

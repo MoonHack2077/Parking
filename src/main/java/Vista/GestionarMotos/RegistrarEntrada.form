@@ -170,6 +170,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPlaca">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPlacaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxHoraEntrada">
           <Properties>
@@ -293,6 +296,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAnioEntrada">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAnioEntradaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

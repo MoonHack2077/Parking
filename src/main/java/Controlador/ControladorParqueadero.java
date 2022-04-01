@@ -52,16 +52,6 @@ public class ControladorParqueadero {
         return horasTotales;
     }
     
-    public Moto obtenerMotoSalida(String placa){
-        Moto moto = motos[0];
-        for(int i=0 ; i<motos.length ; i++){
-            if( motos[i] != null && motos[i].getPlaca().equals(placa)){
-                moto = motos[i];
-            }
-        }
-        return moto;
-    }
-    
     /**
      * Metodo para saber si un empleado ya está registrado en el arreglo
      * @param documento

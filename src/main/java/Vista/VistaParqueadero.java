@@ -17,8 +17,11 @@ public class VistaParqueadero extends javax.swing.JFrame {
     //cp la usé como abreviación de controlador parqueadero
     public static ControladorParqueadero cp = new ControladorParqueadero();
     
-    //cp la usé como abreviación de controlador empleado
+    //ce la usé como abreviación de controlador empleado
     public static ControladorEmpleado ce = new ControladorEmpleado();
+    
+    //vg la usé como abreviación de Validaciones Generales
+    public static ValidacionesGenerales vg = new ValidacionesGenerales();
     
     /**
      * Creates new form VistaParqueadero

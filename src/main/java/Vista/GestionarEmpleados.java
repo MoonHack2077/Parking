@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class GestionarEmpleados extends javax.swing.JFrame {
     
+    
     /**
      * Creates new form GestionarMOtos
      */
@@ -52,6 +53,24 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         jLabel2.setText("Documento: ");
 
         jLabel3.setText("Cargo: ");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDocumentoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoKeyTyped(evt);
+            }
+        });
 
         btnAñadir.setText("Añadir");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
@@ -288,6 +307,33 @@ public class GestionarEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se pudo editar la información del empleado");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    
+    /**
+     * Metodo para supervisar el contenido que digita el usuario
+     * @param evt 
+     */
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+       VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    /**
+     * Metodo para supervisar el contenido que digita el usuario
+     * @param evt 
+     */
+    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
+        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+        VistaParqueadero.vg.soloNumeros(evt);
+    }//GEN-LAST:event_txtDocumentoKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        VistaParqueadero.vg.estaVacio(txtNombre, btnAñadir);
+        VistaParqueadero.vg.estaVacio(txtDocumento, btnAñadir);
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtDocumentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyReleased
+        VistaParqueadero.vg.estaVacio(txtDocumento, btnBuscar);
+    }//GEN-LAST:event_txtDocumentoKeyReleased
 
     /**
      * @param args the command line arguments

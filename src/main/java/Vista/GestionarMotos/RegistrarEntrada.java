@@ -6,6 +6,7 @@ package Vista.GestionarMotos;
 
 import Modelo.Empleado;
 import Modelo.Moto;
+import Vista.ValidacionesGenerales;
 import Vista.VistaParqueadero;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -84,6 +85,12 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             }
         });
 
+        txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyTyped(evt);
+            }
+        });
+
         cbxHoraEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         cbxFase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
@@ -99,6 +106,12 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         cbxMesEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         jLabel5.setText("Año:");
+
+        txtAnioEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnioEntradaKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Sistema para registrar entrada de motos");
 
@@ -250,6 +263,15 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se ha registrado la moto");
         }
     }//GEN-LAST:event_btnRegistrarEntradaActionPerformed
+
+    private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
+        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+    }//GEN-LAST:event_txtPlacaKeyTyped
+
+    private void txtAnioEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioEntradaKeyTyped
+        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+        VistaParqueadero.vg.soloNumeros(evt);
+    }//GEN-LAST:event_txtAnioEntradaKeyTyped
 
     /**
      * @param args the command line arguments

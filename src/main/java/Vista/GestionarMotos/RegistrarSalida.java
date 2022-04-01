@@ -84,6 +84,12 @@ public class RegistrarSalida extends javax.swing.JFrame {
 
         jLabel5.setText("Año:");
 
+        txtAnioSalida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnioSalidaKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Hora de salida");
 
         btnRegistrarSalida.setText("Registrar Salida");
@@ -98,6 +104,12 @@ public class RegistrarSalida extends javax.swing.JFrame {
         cbxFase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
 
         jLabel6.setText("Sistema para registrar salida de motos");
+
+        txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout PANELLayout = new javax.swing.GroupLayout(PANEL);
         PANEL.setLayout(PANELLayout);
@@ -258,6 +270,23 @@ public class RegistrarSalida extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "La placa no coincide con alguna de las registradas");
         }
     }//GEN-LAST:event_btnRegistrarSalidaActionPerformed
+
+    /**
+     * Metodo para supervisar el contendo que digita el usuario
+     * @param evt 
+     */
+    private void txtAnioSalidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioSalidaKeyTyped
+        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+        VistaParqueadero.vg.soloNumeros(evt);
+    }//GEN-LAST:event_txtAnioSalidaKeyTyped
+
+    /**
+     * Metodo para supervisar el contendo que digita el usuario
+     * @param evt 
+     */
+    private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
+        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
+    }//GEN-LAST:event_txtPlacaKeyTyped
 
     /**
      * @param args the command line arguments

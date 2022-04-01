@@ -17,6 +17,7 @@ public class ControladorParqueadero {
     
     public ControladorParqueadero(){
         empleados = new Empleado[4];
+        motos = new Moto[15];
     }
     
     /**
@@ -26,7 +27,7 @@ public class ControladorParqueadero {
      */
     public Moto buscarMoto(String placa){
         for(int i=0 ; i<motos.length ; i++){
-            if(motos[i].getPlaca().equals(placa)){
+            if(motos[i]!=null && motos[i].getPlaca().equals(placa)){
                 return motos[i];
             }
         }

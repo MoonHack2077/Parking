@@ -44,17 +44,18 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRegistrarEntrada = new javax.swing.JButton();
         txtPlaca = new javax.swing.JTextField();
-        cbxHora = new javax.swing.JComboBox<>();
+        cbxHoraEntrada = new javax.swing.JComboBox<>();
         cbxFase = new javax.swing.JComboBox<>();
         rbtnCasco = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        cbxDia = new javax.swing.JComboBox<>();
+        cbxDiaEntrada = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        cbxMes = new javax.swing.JComboBox<>();
+        cbxMesEntrada = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        txtAnio = new javax.swing.JTextField();
+        txtAnioEntrada = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,14 +72,14 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         jLabel2.setText("Hora de llegada");
 
-        jButton1.setText("Registrar Entrada");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarEntrada.setText("Registrar Entrada");
+        btnRegistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarEntradaActionPerformed(evt);
             }
         });
 
-        cbxHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxHoraEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         cbxFase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
 
@@ -86,70 +87,78 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         jLabel3.setText("Dia");
 
-        cbxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDiaEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         jLabel4.setText("Mes");
 
-        cbxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxMesEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         jLabel5.setText("Año:");
+
+        jLabel6.setText("Sistema para registrar entrada de motos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbtnCasco)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)))
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbxMes, javax.swing.GroupLayout.Alignment.LEADING, 0, 97, Short.MAX_VALUE)
-                            .addComponent(txtPlaca, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxHora, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbxDia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAnio))
-                        .addGap(18, 18, 18)
-                        .addComponent(cbxFase, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegistrarEntrada)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(rbtnCasco))
+                                .addGap(71, 71, 71)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbxMesEntrada, javax.swing.GroupLayout.Alignment.LEADING, 0, 97, Short.MAX_VALUE)
+                                    .addComponent(txtPlaca, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxHoraEntrada, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxDiaEntrada, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAnioEntrada))
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxFase, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel6)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxDiaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxMesEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAnioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtnCasco)
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(btnRegistrarEntrada)
                 .addGap(76, 76, 76))
         );
 
@@ -163,18 +172,18 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(btnVolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(143, 143, 143)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(btnVolver)
-                .addGap(3, 3, 3)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,32 +193,40 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         GestionarMotos ventanaMotos = new GestionarMotos();
         ventanaMotos.setVisible(true);
         this.dispose();
-        
-        
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    
+    private void limpiarInputs(){
+        txtPlaca.setText("");
+        cbxHoraEntrada.setSelectedItem("1");
+        cbxDiaEntrada.setSelectedItem("1");
+        cbxMesEntrada.setSelectedItem("1");
+        txtAnioEntrada.setText("");
+    }
+    
+    private void btnRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEntradaActionPerformed
         String placa = txtPlaca.getText();
-        int horaLLegada = Integer.parseInt(cbxHora.getSelectedItem().toString());
+        int horaEntrada = Integer.parseInt(cbxHoraEntrada.getSelectedItem().toString());
         boolean casco = rbtnCasco.getVerifyInputWhenFocusTarget();
-        int dia = Integer.parseInt(cbxDia.getSelectedItem().toString());
-        int mes = Integer.parseInt(cbxMes.getSelectedItem().toString());
-        int anio = Integer.parseInt(txtAnio.getText());
+        int diaEntrada = Integer.parseInt(cbxDiaEntrada.getSelectedItem().toString());
+        int mesEntrada = Integer.parseInt(cbxMesEntrada.getSelectedItem().toString());
+        int anioEntrada = Integer.parseInt(txtAnioEntrada.getText());
         
         Calendar fechaEntrada = Calendar.getInstance();
-        fechaEntrada.set(anio, mes-1, dia, horaLLegada, 0);
+        fechaEntrada.set(anioEntrada, mesEntrada-1, diaEntrada, horaEntrada, 0);
         
-        Moto moto = new Moto( placa , casco , fechaEntrada , horaLLegada , empleado);
+        Moto moto = new Moto( placa , casco , fechaEntrada , empleado);
         
         boolean registrada = VistaParqueadero.ce.registrarEntradaMoto(moto);
         
         if(registrada){
             JOptionPane.showMessageDialog(null, "Se ha registrado la moto con la placa " + placa);
-            System.out.println(VistaParqueadero.cp.motos[0].getPlaca());
+            limpiarInputs();
         }else{
             JOptionPane.showMessageDialog(null, "No se ha registrado la moto");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarEntradaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,20 +264,21 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrarEntrada;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> cbxDia;
+    private javax.swing.JComboBox<String> cbxDiaEntrada;
     private javax.swing.JComboBox<String> cbxFase;
-    private javax.swing.JComboBox<String> cbxHora;
-    private javax.swing.JComboBox<String> cbxMes;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cbxHoraEntrada;
+    private javax.swing.JComboBox<String> cbxMesEntrada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbtnCasco;
-    private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtAnioEntrada;
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

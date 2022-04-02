@@ -35,6 +35,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.empleado = empleado;
+        iniciarCombo ();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +60,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
         cbxHoraSalida = new javax.swing.JComboBox<>();
         cbxFase = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtPlaca = new javax.swing.JTextField();
+        cbxPlacas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,12 +106,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
 
         jLabel6.setText("Sistema para registrar salida de motos");
 
-        txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPlacaKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout PANELLayout = new javax.swing.GroupLayout(PANEL);
         PANEL.setLayout(PANELLayout);
         PANELLayout.setHorizontalGroup(
@@ -137,13 +132,13 @@ public class RegistrarSalida extends javax.swing.JFrame {
                         .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRegistrarSalida)
                             .addComponent(jLabel1))
-                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PANELLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel6))
-                            .addGroup(PANELLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PANELLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cbxPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         PANELLayout.setVerticalGroup(
@@ -154,8 +149,8 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(cbxPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(PANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbxHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +192,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,11 +212,19 @@ public class RegistrarSalida extends javax.swing.JFrame {
      * Metodo para reiniciar los textFields
      */
     private void limpiarInputs(){
-        txtPlaca.setText("");
         cbxHoraSalida.setSelectedItem("1");
         cbxDiaSalida.setSelectedItem("1");
         cbxMesSalida.setSelectedItem("1");
         txtAnioSalida.setText("");
+    }
+    
+    private void iniciarCombo (){
+        cbxPlacas.removeAllItems();
+        cbxPlacas.addItem("Seleccione la placa de la moto que saldrá");
+        Moto[] placas = VistaParqueadero.cp.getMotos();
+        for( int i=0; i<placas.length; i++ ){
+            if( placas[i] != null ) cbxPlacas.addItem( placas[i].getPlaca() );
+        }
     }
     
     /**
@@ -229,7 +232,9 @@ public class RegistrarSalida extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnRegistrarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaActionPerformed
-        String placa = txtPlaca.getText();       
+        if( cbxPlacas.getSelectedIndex()==0 ) return;
+        
+        String placa = (String) cbxPlacas.getSelectedItem();       
 
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
         
@@ -284,14 +289,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnioSalidaKeyTyped
 
     /**
-     * Metodo para supervisar el contendo que digita el usuarioen el textField de la placa
-     * @param evt 
-     */
-    private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
-        VistaParqueadero.vg.validarCaracteresEspeciales(evt);
-    }//GEN-LAST:event_txtPlacaKeyTyped
-
-    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -334,6 +331,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxFase;
     private javax.swing.JComboBox<String> cbxHoraSalida;
     private javax.swing.JComboBox<String> cbxMesSalida;
+    private javax.swing.JComboBox cbxPlacas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -341,6 +339,5 @@ public class RegistrarSalida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtAnioSalida;
-    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

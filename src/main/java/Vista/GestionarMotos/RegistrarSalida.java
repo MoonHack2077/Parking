@@ -218,6 +218,9 @@ public class RegistrarSalida extends javax.swing.JFrame {
         txtAnioSalida.setText("");
     }
     
+    /**
+    *Metodo para Inyectar las placas de las motos registradas en el comboBox, para mejorar la experiencia del usuario
+    */
     private void iniciarCombo (){
         cbxPlacas.removeAllItems();
         cbxPlacas.addItem("Seleccione la placa de la moto que saldrá");
@@ -232,36 +235,49 @@ public class RegistrarSalida extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnRegistrarSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaActionPerformed
+        
+        //El primer elemento que aparece no sirve para hacer la selección, por lo tanto, si esta seleccionado no se hace nada
         if( cbxPlacas.getSelectedIndex()==0 ) return;
         
+        //Obtenemos la placa
         String placa = (String) cbxPlacas.getSelectedItem();       
 
+        //Se busca la moto con la placa seleccionada
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
         
         if(moto != null){
             int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
             String fase = cbxFase.getSelectedItem().toString();
 
+            /*Determinar la fase del dia para ir de acuerdo al formato 24 horas
+            *Si es AM y la hora es 12, se le asigna 0, porque serian las 12 de la madrugada, la hora 0
+            *Si es PM se le suman 12 horas
+            */
             if( fase.equals("AM") && horaSalida == 12 ){
                 horaSalida=0;
             }else if( fase.equals("PM")){
                 horaSalida+=12;
             }
 
+            //Parseando los datos optenidos a enteros para crear la fecha de salida
             int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
             int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
             int anioSalida = Integer.parseInt(txtAnioSalida.getText());
             
-
+            //Creando la fecha de salida
             Date fechaSalida = new Date(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);
             
+            //Seteando al fecha de salida de la moto
             moto.setFechaSalida(fechaSalida);
             
-            
+           //Seteando el empleado responsable de la salida de l amoto            
             moto.setEmpleadoSalida(empleado);
-            long horasQuePermanecio = VistaParqueadero.cp.horasPermanecidas(moto);
-            moto.setHorasQuePermanecio(horasQuePermanecio );
             
+            //Calculando las horas que permaneció la moto para setearlas
+            long horasQuePermanecio = VistaParqueadero.cp.horasPermanecidas(moto);
+            moto.setHorasQuePermanecio(horasQuePermanecio);
+            
+            //Validamos si se registró la salida
             boolean registrada = VistaParqueadero.cp.registrarSalidaMoto(moto.getPlaca());
             
             if(registrada){
@@ -273,9 +289,6 @@ public class RegistrarSalida extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(null, "No se registró la salida");
             }
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "La placa no coincide con alguna de las registradas");
         }
     }//GEN-LAST:event_btnRegistrarSalidaActionPerformed
 

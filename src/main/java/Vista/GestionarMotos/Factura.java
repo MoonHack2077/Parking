@@ -18,8 +18,8 @@ public class Factura extends javax.swing.JFrame {
     
     //VALOR POR HORA
     double valorPorHora = 1000;
-    //Total a pagar
     
+    //Total a pagar   
     double total;
     
     /**
@@ -40,23 +40,23 @@ public class Factura extends javax.swing.JFrame {
         this.moto = moto;
         
         //Inyectando los valores a sus respectivos labels
-        lblPlaca.setText(moto.getPlaca());
-        lblEntrada.setText(String.valueOf(moto.getFechaLLegada()));
-        lblSalida.setText(String.valueOf(moto.getFechaSalida()));
-        lblHorasQuePermanecio.setText(String.valueOf(moto.getHorasQuePermanecio()));
-        lblEmpleadoEntrada.setText(moto.getEmpleadoResponsable().getNombre());
-        lblEmpleadoSalida.setText(moto.getEmpleadoSalida().getNombre());
+        lblPlaca.setText( this.moto.getPlaca() );
+        lblEntrada.setText(String.valueOf( this.moto.getFechaLLegada()) );
+        lblSalida.setText(String.valueOf( this.moto.getFechaSalida()) );
+        lblHorasQuePermanecio.setText( String.valueOf(this.moto.getHorasQuePermanecio()) );
+        lblEmpleadoEntrada.setText( this.moto.getEmpleadoResponsable().getNombre() );
+        lblEmpleadoSalida.setText( this.moto.getEmpleadoSalida().getNombre() );
         
         //Calculando el valor total a pagar
-        total = moto.getHorasQuePermanecio()*valorPorHora;
+        this.total = this.moto.getHorasQuePermanecio()*this.valorPorHora;
         
-        //Validando si hay dejó casco para determinar que procede
-        if( moto.isCasco() ){
+        //Validando si dejó casco para determinar que procede
+        if( this.moto.isCasco() ){
             lblCasco.setText("+3000");
-            lblTotal.setText( String.valueOf(total + 3000) );
+            lblTotal.setText( String.valueOf(this.total + 3000) );
         }else{
             lblCasco.setText("+0"); 
-            lblTotal.setText( String.valueOf(total) );
+            lblTotal.setText( String.valueOf(this.total) );
         }
         
     }

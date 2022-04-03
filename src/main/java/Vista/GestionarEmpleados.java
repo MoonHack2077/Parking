@@ -198,7 +198,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
     }
     
     /**
-     * Metodo para activar o desactivar botones 
+     * Metodo para activar o desactivar los botones de eliminar y editar
      * @param enabled 
      */
     private void setEnabledInputs(boolean enabled){
@@ -221,18 +221,22 @@ public class GestionarEmpleados extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        //Se obtienen los valores de los textFields
         String nombre = txtNombre.getText();
         int documento = Integer.parseInt(txtDocumento.getText());
         String cargo = cbxCargo.getSelectedItem().toString();
+        
+        
         Empleado empleado;
+        //Condicion para saber con que atributo crear el empleado
         if(cargo.equals("Responsable de patio")){
             empleado = new Empleado(nombre,documento,cargo, true);
         }else{
             empleado = new Empleado(nombre,documento,cargo, false);
         }
         
+        //Verificamos se se añade el empleado
         boolean añadido = VistaParqueadero.cp.añadirEmpleado(empleado);
-        
         if(añadido){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " añadido");
             limpiarInputs();
@@ -246,10 +250,11 @@ public class GestionarEmpleados extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       int documento = Integer.parseInt(txtDocumento.getText());
+        // Se obtiene el documento
+        int documento = Integer.parseInt(txtDocumento.getText());
         
+        //Verificamos si el empleado fue encontrado
         Empleado encontrado = VistaParqueadero.cp.buscarEmpleado(documento);
-        
         if(encontrado != null){
             txtNombre.setText(encontrado.getNombre());
             cbxCargo.setSelectedItem(encontrado.getCargo());
@@ -264,9 +269,11 @@ public class GestionarEmpleados extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         // Se obtiene el documento
         int documento = Integer.parseInt(txtDocumento.getText());
-        boolean eliminado = VistaParqueadero.cp.eliminarEmpleado(documento);
         
+        //Verificamos se se elimina el empleado
+        boolean eliminado = VistaParqueadero.cp.eliminarEmpleado(documento);
         if(eliminado){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " eliminado");
             limpiarInputs();
@@ -281,18 +288,22 @@ public class GestionarEmpleados extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // Se obtienen los valores de lso textFields
         String nombre = txtNombre.getText();
         int documento = Integer.parseInt(txtDocumento.getText());
         String cargo = cbxCargo.getSelectedItem().toString();
+        
+        
         Empleado empleado;
+        //Condicion para saber con que atributo crear el empleado
         if(cargo.equals("Responsable de patio")){
             empleado = new Empleado(nombre,documento,cargo, true);
         }else{
             empleado = new Empleado(nombre,documento,cargo, false);
         }
         
+        //Verificamos si lso datos del empleado fueron editados
         boolean editado = VistaParqueadero.cp.editarEmpleado(empleado);
-        
         if(editado){
             JOptionPane.showMessageDialog(null, "Empleado con el documento: " + documento + " editado");
             limpiarInputs();

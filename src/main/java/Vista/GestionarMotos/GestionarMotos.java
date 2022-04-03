@@ -151,7 +151,10 @@ public class GestionarMotos extends javax.swing.JFrame {
      */
     private Empleado obtenerEmpleado(){
         int documento = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu número de documento para verificar si tienes derecho a realizar este proceso", null));
+        
+        //Se busca el empleado con el documento introducido
         Empleado empleado = VistaParqueadero.cp.buscarEmpleado(documento);
+        
         
         if(empleado!=null && empleado.getPuedeRegistrar()) return empleado;
         

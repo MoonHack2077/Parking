@@ -159,8 +159,12 @@ public class ControladorParqueadero {
         if( aux != null ){
             for(int i=0 ; i<getEmpleados().length ; i++){
                 if(getEmpleados()[i].getDocumento() == empleado.getDocumento()){
+                    
+                    //Se inyectan los nuevos valores
                     getEmpleados()[i].setNombre(empleado.getNombre());
                     getEmpleados()[i].setCargo(empleado.getCargo());
+                    
+                    //Condicion necesaria para saber si el empleado puede registrar o no
                     if( empleado.getCargo().equals("Responsable de patio") ){
                         getEmpleados()[i].setPuedeRegistrar(true);
                     }else{

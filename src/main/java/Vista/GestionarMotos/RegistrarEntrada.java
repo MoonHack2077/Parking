@@ -233,27 +233,36 @@ public class RegistrarEntrada extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEntradaActionPerformed
+        //Se obtienen los datos de los textFields
         String placa = txtPlaca.getText();
-        int horaEntrada = Integer.parseInt(cbxHoraEntrada.getSelectedItem().toString());
         String fase = cbxFase.getSelectedItem().toString();
+        boolean casco = rbtnCasco.isSelected();
         
+        //Parseando los datos optenidos a enteros para crear la fecha de salida
+        int horaEntrada = Integer.parseInt(cbxHoraEntrada.getSelectedItem().toString());
+        int diaEntrada = Integer.parseInt(cbxDiaEntrada.getSelectedItem().toString());
+        int mesEntrada = Integer.parseInt(cbxMesEntrada.getSelectedItem().toString());
+        int anioEntrada = Integer.parseInt(txtAnioEntrada.getText());
+        
+        /*Determinar la fase del dia para ir de acuerdo al formato 24 horas
+        *Si es AM y la hora es 12, se le asigna 0, porque serian las 12 de la madrugada, la hora 0
+        *Si es PM se le suman 12 horas
+        */
         if( fase.equals("AM") && horaEntrada == 12 ){
             horaEntrada=0;
         }else if( fase.equals("PM") ){
             horaEntrada+=12;
         }
         
-        boolean casco = rbtnCasco.isSelected();
-        int diaEntrada = Integer.parseInt(cbxDiaEntrada.getSelectedItem().toString());
-        int mesEntrada = Integer.parseInt(cbxMesEntrada.getSelectedItem().toString());
-        int anioEntrada = Integer.parseInt(txtAnioEntrada.getText());
         
+        //Creando la fecha de entrada
         Date fechaEntrada = new Date(anioEntrada, mesEntrada-1, diaEntrada, horaEntrada, 0);
       
+        //Creamos la moto con sus respectivos valores
         Moto moto = new Moto( placa , casco , fechaEntrada , empleado);
         
+        //Verificamos si la moto fue registrada
         boolean registrada = VistaParqueadero.cp.registrarEntradaMoto(moto);
-        
         if(registrada){
             JOptionPane.showMessageDialog(null, "Se ha registrado la moto con la placa " + placa);
             limpiarInputs();

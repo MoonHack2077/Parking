@@ -21,6 +21,7 @@ public class ValidacionesGenerales {
     public void validarCaracteresEspeciales( java.awt.event.KeyEvent evt ){
         int caracter = evt.getKeyChar();
         
+        //El 127 corresponde a la tecla de eliminar, y esa si debe permitirse en los textFields
         if( caracter==127 ) return;
         
         if( (caracter>=33 && caracter<=47) 

@@ -246,6 +246,10 @@ public class RegistrarSalida extends javax.swing.JFrame {
         Moto moto = VistaParqueadero.cp.buscarMoto(placa);
         
         if(moto != null){
+            //Parseando los datos optenidos a enteros para crear la fecha de salida
+            int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
+            int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
+            int anioSalida = Integer.parseInt(txtAnioSalida.getText());
             int horaSalida = Integer.parseInt(cbxHoraSalida.getSelectedItem().toString());
             String fase = cbxFase.getSelectedItem().toString();
 
@@ -259,10 +263,7 @@ public class RegistrarSalida extends javax.swing.JFrame {
                 horaSalida+=12;
             }
 
-            //Parseando los datos optenidos a enteros para crear la fecha de salida
-            int diaSalida = Integer.parseInt(cbxDiaSalida.getSelectedItem().toString());
-            int mesSalida = Integer.parseInt(cbxMesSalida.getSelectedItem().toString());
-            int anioSalida = Integer.parseInt(txtAnioSalida.getText());
+            
             
             //Creando la fecha de salida
             Date fechaSalida = new Date(anioSalida, mesSalida-1, diaSalida, horaSalida, 0);

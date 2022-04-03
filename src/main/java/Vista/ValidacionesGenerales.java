@@ -20,9 +20,8 @@ public class ValidacionesGenerales {
      */
     public void validarCaracteresEspeciales( java.awt.event.KeyEvent evt ){
         int caracter = evt.getKeyChar();
-        if( caracter==127 ){ 
-            return;
-        }
+        
+        if( caracter==127 ) return;
         
         if( (caracter>=33 && caracter<=47) 
                 || (caracter>=58 && caracter<=64)

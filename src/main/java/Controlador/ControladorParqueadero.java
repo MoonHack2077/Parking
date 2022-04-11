@@ -80,9 +80,9 @@ public class ControladorParqueadero {
     /**
      * Metodo para obtener las horas que permaneció una moto
      * @param moto
-     * @return 
+     * @return las horas totales que estuvo la moto en el parqueadero
      */
-    public long horasPermanecidas(Moto moto){
+    public long horasQuePermanecio(Moto moto){
         
         long horaLLegada = moto.getFechaLLegada().getTime();
         long horaSalida = moto.getFechaSalida().getTime();
